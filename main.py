@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""
-Sudoku Solver using Backtracking Algorithm
-"""
+import random
+
 N = 9
 
 
@@ -15,11 +14,11 @@ def printSolution(board):
 
 def isSafe(board, row, col, num):
     """Check whether it will be legal to assign num to the given row, col"""
-    for x in range(9):
+    for x in range(N):
         if board[row][x] == num:
             return False
 
-    for x in range(9):
+    for x in range(N):
         if board[x][col] == num:
             return False
 
@@ -46,7 +45,8 @@ def solveSudoku(board, row, col):
     if board[row][col] > 0:
         return solveSudoku(board, row, col + 1)
 
-    for num in range(1, N + 1, 1):
+    nums = random.sample(range(1, N + 1), N)  # Try numbers in random order
+    for num in nums:
         if isSafe(board, row, col, num):
             board[row][col] = num
             if solveSudoku(board, row, col + 1):
@@ -55,21 +55,15 @@ def solveSudoku(board, row, col):
     return False
 
 
+def generateRandomBoard():
+    """Generate a random valid Sudoku board"""
+    board = [[0 for _ in range(N)] for _ in range(N)]
+    solveSudoku(board, 0, 0)
+    return board
+
+
 if __name__ == "__main__":
     """Main function to test above functions"""
-    board = [[0 for j in range(N)] for i in range(N)]
-    board = [
-        [3, 0, 6, 5, 0, 8, 4, 0, 0],
-        [5, 2, 0, 0, 0, 0, 0, 0, 0],
-        [0, 8, 7, 0, 0, 0, 0, 3, 1],
-        [0, 0, 3, 0, 0, 0, 0, 6, 8],
-        [0, 0, 0, 0, 4, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 7, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 2, 6, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
-    if solveSudoku(board, 0, 0):
-        printSolution(board)
-    else:
-        print("No solution exists")
+    board = generateRandomBoard()
+    print("Randomly generated Sudoku board:")
+    printSolution(board)
