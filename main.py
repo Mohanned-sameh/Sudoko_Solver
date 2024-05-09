@@ -45,7 +45,7 @@ def solveSudoku(board, row, col):
     if board[row][col] > 0:
         return solveSudoku(board, row, col + 1)
 
-    nums = random.sample(range(1, N + 1), N)  # Try numbers in random order
+    nums = random.sample(range(1, N + 1), N)
     for num in nums:
         if isSafe(board, row, col, num):
             board[row][col] = num

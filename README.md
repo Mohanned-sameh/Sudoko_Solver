@@ -1,13 +1,20 @@
-# Sudoko Solver
+# Sudoku Solver
 
-Sudoku Solver using Backtracking Algorithm
-The algorithm is implemented using recursion
-The algorithm is implemented using the following steps:
+This Python script generates a random valid Sudoku board and solves it using backtracking.
 
-1. Find the first empty cell in the board
-2. Check if the number can be placed in the cell
-3. If the number can be placed, place the number in the cell
-4. Repeat the above steps for the next cell
-5. If the number cannot be placed, backtrack and try the next number
-6. If all numbers are tried and none of them can be placed, backtrack to the previous cell
-7. Repeat the above steps until all cells are filled
+## Requirements
+
+- Python 3.x
+
+## Usage
+
+1. Clone the repository or download the script file `sudoku_solver.py`.
+2. Run the script using the following command:
+   `python sudoku_solver.py`
+3. The script will generate a random Sudoku board and print the solution.
+
+## How it Works
+
+- The script implements backtracking to solve the Sudoku puzzle.
+- It starts from an empty Sudoku grid and recursively tries to assign numbers to empty cells while ensuring that the assignment is valid according to Sudoku rules.
+- If a solution is found, it prints the solution.
